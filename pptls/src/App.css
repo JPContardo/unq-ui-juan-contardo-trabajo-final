@@ -1,0 +1,56 @@
+body {
+    margin: 0px; 
+    background: black; 
+    height: 100%;
+}
+
+
+.App {
+    display: flex;
+    justify-content: center;
+}
+
+
+.MarcoMaquina {
+    display: inline-block;
+    position: relative;
+    min-width: 309px;
+    min-height: 800px;
+    background-image: url(./images/Maquina.png);
+}
+
+.Animacion {
+    position: absolute;
+    bottom: 82.7px;
+    right: 28.5px;
+    width: 252px;
+    height: 541px;
+}
+
+#BotoneraSuperior {
+    position: absolute;
+    margin-top: 725px;
+    margin-left: 68px;
+}
+
+#BotoneraInferior {
+    position: absolute;
+    margin-top: 760px;
+    margin-left: 90px;
+}
+
+.button {
+    background-color: #d22d33;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+
+
+
