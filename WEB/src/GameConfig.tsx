@@ -1,4 +1,4 @@
-import { Jugada } from './Jugada';
+import { Jugada } from './clases/Jugada';
 
 //Jugadas Registradas
 const Piedra  = new Jugada('Piedra')

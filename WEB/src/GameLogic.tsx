@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Jugada } from './componentes/Jugada';
-import * as GameConfig from './componentes/GameConfig'
-
+import { Jugada } from './clases/Jugada';
+import * as GameConfig from './GameConfig'
 
 export const GameManager = () => {
     const rutaDeLaAnimacionInicial     : string = './images/Inicial.png'

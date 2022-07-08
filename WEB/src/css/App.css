@@ -4,19 +4,17 @@ body {
     height: 100%;
 }
 
-
 .App {
     display: flex;
     justify-content: center;
 }
-
 
 .MarcoMaquina {
     display: inline-block;
     position: relative;
     min-width: 309px;
     min-height: 800px;
-    background-image: url(./images/Maquina.png);
+    background-image: url(../images/Maquina.png);
 }
 
 .Animacion {
