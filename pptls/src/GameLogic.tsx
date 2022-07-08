@@ -1,38 +1,34 @@
 import { useState, useEffect } from 'react';
+import { Jugada } from './componentes/Jugada';
+import * as GameConfig from './componentes/GameConfig'
+
 
 export const GameManager = () => {
-    // const gifSercher : Map<String,String> = new Map<String,String>()
-    const animacionInicial : string = './images/Inicial.png'
-    const pendiente : Figura = new Pendiente("Pendiente")
-    const piedra : Figura = new Piedra("Piedra")
-    const tijera : Figura = new Tijera("Tijeta")
-    const papel : Figura = new Papel("Papel")
-    const lagarto : Figura = new Lagarto("Lagarto")
-    const spock : Figura = new Spock("Spock")
-    const [jugadaActual, setJugadaActual] = useState(pendiente)
-    const [animacionActual, setAnimacionActual] = useState(animacionInicial)
-    //const [estadoBotones, setEstadoBotones] = useState("false")
+    const rutaAnimacionInicial : string = './images/Inicial.png'
+    const [jugadaActual, setJugadaActual] = useState<Jugada | undefined>(undefined)
+    const [rutaAnimacionActual, setRutaAnimacionActual] = useState(rutaAnimacionInicial)
 
     useEffect(() => {
-        if(jugadaActual !== pendiente) {
-            setAnimacionActual('./images/PiedraVSPiedra.gif')
+        if(jugadaActual !== undefined) {
+            const jugadaPC = GameConfig.jugadasRegistradas[~~(Math.random() * GameConfig.jugadasRegistradas.length)]
+            const path = `./images/${jugadaActual.nombre}VS${jugadaPC.nombre}.gif`
+            setRutaAnimacionActual(path)
         }
-        
     },[jugadaActual])
 
 
     return(
         <div className="MarcoMaquina">
-            <img className="Animacion" src={require('' + animacionActual)} alt="Juego"/>
+            <img className="Animacion" src={require('' + rutaAnimacionActual)} alt="Juego"/>
             <div className="Botonera">
                 <div className="btn-group btn-group-toggle" data-toggle="buttons" id="BotoneraSuperior">
-                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(piedra) }>Piedra</button>
-                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(tijera) }>Tijera</button>
-                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(papel) }>Papel</button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(GameConfig.obtenerJugadaPorNombre('Piedra')) }>Piedra</button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(GameConfig.obtenerJugadaPorNombre('Tijera')) }>Tijera</button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(GameConfig.obtenerJugadaPorNombre('Papel')) }>Papel</button>
                 </div>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons" id="BotoneraInferior">
-                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(lagarto) }>Lagarto</button>
-                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(spock) }>Spock</button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(GameConfig.obtenerJugadaPorNombre('Lagarto')) }>Lagarto</button>
+                    <button type="button" className="btn btn-primary btn-sm" onClick={ () => setJugadaActual(GameConfig.obtenerJugadaPorNombre('Spock')) }>Spock</button>
                 </div>
             </div>
         </div>)
@@ -41,52 +37,15 @@ export const GameManager = () => {
 
 
 
-abstract class Figura {
-    nombre: String;
 
-    constructor(nombre: String) {
-        this.nombre = nombre;
-    }
 
-    protected abstract ganaAnte(figuraRival : Figura) : Boolean
 
-    protected empataAnte(figuraRival : Figura) : Boolean {
-        return this.nombre === figuraRival.nombre
-    }
-}
 
-class Piedra extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(figuraRival.nombre === "Tijera" || figuraRival.nombre === "Lagarto")
-    }
-}
 
-class Tijera extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(figuraRival.nombre === "Papel" || figuraRival.nombre === "Lagarto")
-    }
-}
 
-class Papel extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(figuraRival.nombre === "Piedra" || figuraRival.nombre === "Spock")
-    }
-}
 
-class Lagarto extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(figuraRival.nombre === "Papel" || figuraRival.nombre === "Lagarto")
-    }
-}
 
-class Spock extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(figuraRival.nombre === "Piedra" || figuraRival.nombre === "Tijera")
-    }
-}
 
-class Pendiente extends Figura {
-    protected ganaAnte(figuraRival : Figura) : Boolean {
-        return(false)
-    }
-}
+
+
+
