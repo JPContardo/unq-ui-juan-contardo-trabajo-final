@@ -10,10 +10,10 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item ms-2">
-                                <Link className="nav-link" aria-current="page" to="/"><strong>Standar Mode</strong></Link>
+                                <Link className="nav-link" aria-current="page" to="/"><strong>Modo: Estandar</strong></Link>
                             </li>
                             <li className="nav-item ms-2">
-                                <Link className="nav-link" to="modo/threeToWIn"><strong>Three To Win Mode</strong></Link>
+                                <Link className="nav-link" to="modo/tresParaGanar"><strong>Modo: Tres Para Ganar</strong></Link>
                             </li>
                         </ul>
                     </div>

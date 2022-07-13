@@ -23,14 +23,20 @@ const ThreeToWin = () => {
     useEffect(() => {
         if(getNumberOfRoundsWonByThePlayer === 3) {
             resetScores()
-            setMessage(`The winner is ${getCurrentUserName}`)
-            Api.registerNewWin(getCurrentUserName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
+            setMessage(`El ganador es ${getCurrentUserName}`)
+            Api.registerNewWin(getCurrentUserName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr key={`User_${i.name}_Key`} className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
         } else if(getNumberOfRoundsWonByTheComputer === 3) {
             resetScores()
-            setMessage("The winner is Computer")
+            setMessage("El ganador es Computer")
         }
 
     },[getNumberOfRoundsWonByTheComputer, getNumberOfRoundsWonByThePlayer])
+
+    useEffect(() => {
+        if(getShowFlag === 'hide' && getMessage !== '') {
+            setMessage('')
+        }
+    }, [getShowFlag])
 
     useEffect(() => {
         if(!!getMessage) {
@@ -40,21 +46,23 @@ const ThreeToWin = () => {
 
     useEffect(() => {
         if(!!getCurrentUserName) {
-            Api.setPlayer(getInputName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
-            setMessage(`Welcome ${getCurrentUserName}, have fun :)`)
+            Api.setPlayer(getInputName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr key={`User_${i.name}_Key`} className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
+            setMessage(`Bienvenido ${getCurrentUserName}, que te diviertas :)`)
             setButtonStatus('')
             setInputName('')
             resetScores()
         }
     }, [getCurrentUserName])
 
+
+
     return(
             <div className="ContenedorMejorDeCinco">
                 <Standar buttonStatus={getButtonStatus} addNewRoundWonByThePlayer={addNewRoundWonByThePlayer} addNewRoundWonByTheComputer={addNewRoundWonByTheComputer}/>
                 <div className="ContenedorDatosDeSession">
                     <div className="ContenedorNombreDeUsuario">
-                        <input value={getInputName} onChange={(event) => setInputName(event.target.value)} maxLength={100} placeholder="Enter your name..."/>
-                        <button disabled={!getInputName} className="btn btn-danger" onClick={ () => setCurrentUserName(getInputName) } >Send</button>
+                        <input value={getInputName} onChange={(event) => setInputName(event.target.value)} maxLength={100} placeholder="Ingrese su nombre ..."/>
+                        <button disabled={!getInputName} className="btn btn-danger" onClick={ () => setCurrentUserName(getInputName) } >Enviar</button>
                     </div>
                     <div className="ContenedorScore">
                         <p className="text-center fw-bold">Computer Score - {getNumberOfRoundsWonByTheComputer} {(!!getCurrentUserName) ? getCurrentUserName : "Player"} Score - {getNumberOfRoundsWonByThePlayer}</p> 
@@ -64,8 +72,8 @@ const ThreeToWin = () => {
                             <table className="table table-bordered table-striped mb-0">
                                 <thead>
                                     <tr className="table-light">
-                                    <th>Name</th>
-                                    <th>Win Games</th>
+                                    <th>Nombre</th>
+                                    <th>Victorias</th>
                                     </tr>
                                 </thead>
                                 <tbody>

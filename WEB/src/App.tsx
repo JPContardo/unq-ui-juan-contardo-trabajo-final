@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<NavBar />}>
-            <Route index element={<div className='ContendorJuegoEstandar'><Standar /></div>} />
-            <Route path='modo/threeToWIn' element={<ThreeToWin />} />
+            <Route index element={<div className='ContendorJuegoEstandar'><Standar buttonStatus={''} addNewRoundWonByThePlayer={() => 0} addNewRoundWonByTheComputer={() => 0}/></div>} />
+            <Route path='modo/tresParaGanar' element={<ThreeToWin />} />
             <Route path='*' element={<NotFound />}/>
           </Route> 
         </Routes>

@@ -31,7 +31,7 @@ const Standar = ({buttonStatus, addNewRoundWonByThePlayer , addNewRoundWonByTheC
             setButtonStatus('disabled')
             const pcPlay = GameConfig.recordedPlays[~~(Math.random() * GameConfig.recordedPlays.length)]
             setCurrentAnimationPath(require(`../../images/${getCurrentPlay.name}VS${pcPlay.name}.gif`))
-            setTimeout(() => setCurrentAnimationPath(determineWinner(pcPlay)), 6000);
+            setTimeout(() => setCurrentAnimationPath(determineWinner(pcPlay)), 7000);
             setTimeout(() => {setCurrentAnimationPath(pathFromInitialAnimation); setCurrentPlay(undefined); setButtonStatus('active')}, 12000);
         }
     },[getCurrentPlay])

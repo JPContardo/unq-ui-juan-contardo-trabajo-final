@@ -13,7 +13,7 @@ Con este comando, instalaremos todas las dependencias que esten escritas en el a
 
 ## Ejecucion
 #### API
-Antes de iniciar la aplicación, es necesario levantar la API que trae el videojuego. Esta es la encargada de dar soporte al modo de juego **ThreeToWin**, donde el usuario podrá ingresar su nickname y registrar cuantas victorias obtuvo en este modo.
+Antes de iniciar la aplicación, es necesario levantar la API que trae el videojuego. Esta es la encargada de dar soporte al modo de juego **Tres Para Ganar**, donde el usuario podrá ingresar su nickname y registrar cuantas victorias obtuvo en este modo.
 > *Aclaración*: Para ejecutar la API, se utilizó como IDE IntelliJ IDEA, los pasos que se nombraran a continuación pueden variar dependiendo su IDE.
 
 Una vez abierto el proyecto y construido mediante Maven, siga el siguiente recorrido  en búsqueda del archivo *"Main.kt"*
