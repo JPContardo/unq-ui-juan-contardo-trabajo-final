@@ -6,10 +6,13 @@ Bienvenido a la guía de **PPTLS**. Para el desarrollo del juego intenté salir 
 > *Aclaración*: El trabajo practico fue creado a partir de typescript, me parecio que era una buena oportunidad para probar esta poderoza herramienta.
 > 
 Vamos a necesitar tener instalado **NodeJS** y **npm** en sus ultimas versiones.
+
 Tutorial instalacion NodeJS + npm en Linux:
 https://phoenixnap.com/kb/update-node-js-version#ftoc-heading-3
+
 Tutorial instalacion NodeJS + npm en Windows:
 https://www.cursosgis.com/como-instalar-node-js-y-npm-en-4-pasos/
+
 Tutorial instalacion NodeJS + npm en Mac:
 https://nodejs.org/es/download/package-manager/#macos
 
