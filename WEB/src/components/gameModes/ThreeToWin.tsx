@@ -12,21 +12,22 @@ const ThreeToWin = () => {
     const [getRows , setRows] = useState<JSX.Element[] | never[]>([])
     const [getShowFlag, setShowFlag] = useState('hide')
     const [getMessage, setMessage] = useState('')
+    const [getButtonStatus, setButtonStatus] = useState('disabled')
     const defaultToastMessage = <ToastMessage getMessage={getMessage} getShowFlag={getShowFlag} setShowFlag={setShowFlag}/>
 
-    useEffect(() => {
-        const resetScores = () => {
-            addNewRoundWonByThePlayer(0)
-            addNewRoundWonByTheComputer(0)
-        }
+    const resetScores = () => {
+        addNewRoundWonByThePlayer(0)
+        addNewRoundWonByTheComputer(0)
+    }
 
+    useEffect(() => {
         if(getNumberOfRoundsWonByThePlayer === 3) {
             resetScores()
-            setMessage(`El ganador es ${getCurrentUserName}`)
+            setMessage(`The winner is ${getCurrentUserName}`)
             Api.registerNewWin(getCurrentUserName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
         } else if(getNumberOfRoundsWonByTheComputer === 3) {
             resetScores()
-            setMessage(`El ganador es Computer`)
+            setMessage("The winner is Computer")
         }
 
     },[getNumberOfRoundsWonByTheComputer, getNumberOfRoundsWonByThePlayer])
@@ -40,20 +41,23 @@ const ThreeToWin = () => {
     useEffect(() => {
         if(!!getCurrentUserName) {
             Api.setPlayer(getInputName).then((response) => setRows(response.data.map((i: { name: string , score: number }) => <tr className="table-light"><td>{i.name}</td><td>{i.score}</td></tr>)))
+            setMessage(`Welcome ${getCurrentUserName}, have fun :)`)
+            setButtonStatus('')
             setInputName('')
+            resetScores()
         }
     }, [getCurrentUserName])
 
     return(
             <div className="ContenedorMejorDeCinco">
-                <Standar addNewRoundWonByThePlayer={addNewRoundWonByThePlayer} addNewRoundWonByTheComputer={addNewRoundWonByTheComputer}/>
+                <Standar buttonStatus={getButtonStatus} addNewRoundWonByThePlayer={addNewRoundWonByThePlayer} addNewRoundWonByTheComputer={addNewRoundWonByTheComputer}/>
                 <div className="ContenedorDatosDeSession">
                     <div className="ContenedorNombreDeUsuario">
-                        <input value={getInputName} onChange={(event) => setInputName(event.target.value)} maxLength={100} placeholder="Ingrese su nombre ..."/>
-                        <button disabled={getInputName === ''} className="btn btn-outline-success mt-3" type="button" onClick={ () => setCurrentUserName(getInputName) } >Enviar</button>
+                        <input value={getInputName} onChange={(event) => setInputName(event.target.value)} maxLength={100} placeholder="Enter your name..."/>
+                        <button disabled={!getInputName} className="btn btn-danger" onClick={ () => setCurrentUserName(getInputName) } >Send</button>
                     </div>
                     <div className="ContenedorScore">
-                        <p className="text-center fw-bold">Computer Score - {getNumberOfRoundsWonByTheComputer} {(getCurrentUserName !== '') ? getCurrentUserName : "Player"} Score - {getNumberOfRoundsWonByThePlayer}</p> 
+                        <p className="text-center fw-bold">Computer Score - {getNumberOfRoundsWonByTheComputer} {(!!getCurrentUserName) ? getCurrentUserName : "Player"} Score - {getNumberOfRoundsWonByThePlayer}</p> 
                     </div>
                     <div className="ContenedorTabla">
                         <div className="table-wrapper-scroll-y my-custom-scrollbar">

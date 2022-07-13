@@ -5,12 +5,12 @@ import pathFromPlayerWinAnimation from '../../images/Player_Win.gif'
 import pathFromNobodyWinAnimation from '../../images/Nobody_Win.gif'
 import pathFromInitialAnimation from '../../images/Inicial.png'
 import * as GameConfig from '../../extras/GameConfig'
-import { Play } from '../../extras/Jugada';
+import { Play } from '../../extras/Play';
 
-const Standar = ({addNewRoundWonByThePlayer , addNewRoundWonByTheComputer} : {addNewRoundWonByThePlayer : React.Dispatch<React.SetStateAction<number>>, addNewRoundWonByTheComputer: React.Dispatch<React.SetStateAction<number>>}) => {
+const Standar = ({buttonStatus, addNewRoundWonByThePlayer , addNewRoundWonByTheComputer} : {buttonStatus: string, addNewRoundWonByThePlayer : React.Dispatch<React.SetStateAction<number>>, addNewRoundWonByTheComputer: React.Dispatch<React.SetStateAction<number>>}) => {
     const [getCurrentAnimationPath, setCurrentAnimationPath] = useState(pathFromInitialAnimation)
     const [getCurrentPlay, setCurrentPlay] = useState<Play | undefined>()
-    const [getButtonStatus, setButtonStatus] = useState('')
+    const [getButtonStatus, setButtonStatus] = useState(buttonStatus)
     
     useEffect(() => {
         const determineWinner = (rivalPlay: Play) => {
@@ -35,6 +35,12 @@ const Standar = ({addNewRoundWonByThePlayer , addNewRoundWonByTheComputer} : {ad
             setTimeout(() => {setCurrentAnimationPath(pathFromInitialAnimation); setCurrentPlay(undefined); setButtonStatus('active')}, 12000);
         }
     },[getCurrentPlay])
+
+    useEffect(() => {
+        if(buttonStatus !== 'disabled') {
+            setButtonStatus('')
+        }
+    },[buttonStatus])
 
     return(
             <div className="MarcoMaquina">

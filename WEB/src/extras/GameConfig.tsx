@@ -1,4 +1,4 @@
-import { Play } from './Jugada';
+import { Play } from './Play';
 
 //Jugadas Registradas
 const Piedra  = new Play('Piedra')

@@ -24,11 +24,18 @@ body {
     width: 80%;
 }
 
+.ContenedorNombreDeUsuario {
+    position: relative;
+    margin-left: 25%;
+    margin-bottom: 5%;
+}
+
 
 .ContenedorScore {
     background: white;
     position: relative;
     margin-left: 25%;
+    margin-bottom: 5%;
 }
 
 .ContenedorTabla {
@@ -47,7 +54,9 @@ body {
     display: block;
 }
 
-
+.btn-danger {
+    margin-left: 5px;
+}
 
 
 
