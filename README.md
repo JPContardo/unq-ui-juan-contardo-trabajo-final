@@ -4,6 +4,14 @@ Bienvenido a la guía de **PPTLS**. Para el desarrollo del juego intenté salir 
 
 ## Instalacion
 > *Aclaración*: El trabajo practico fue creado a partir de typescript, me parecio que era una buena oportunidad para probar esta poderoza herramienta.
+> 
+Vamos a necesitar tener instalado **NodeJS** y **npm** en sus ultimas versiones.
+Tutorial instalacion NodeJS + npm en Linux:
+https://phoenixnap.com/kb/update-node-js-version#ftoc-heading-3
+Tutorial instalacion NodeJS + npm en Windows:
+https://www.cursosgis.com/como-instalar-node-js-y-npm-en-4-pasos/
+Tutorial instalacion NodeJS + npm en Mac:
+https://nodejs.org/es/download/package-manager/#macos
 
 Descargue el contenido del repositorio en forma que crea más conveniente. GitHub ofrece el clonado por consola o la descarga del archivo zip. Una vez tenga la carpeta del proyecto en su computadora, diríjase a la carpeta *WEB* e ingrese mediante consola el comando:
 ```js
@@ -16,7 +24,7 @@ Con este comando, instalaremos todas las dependencias que esten escritas en el a
 Antes de iniciar la aplicación, es necesario levantar la API que trae el videojuego. Esta es la encargada de dar soporte al modo de juego **Tres Para Ganar**, donde el usuario podrá ingresar su nickname y registrar cuantas victorias obtuvo en este modo.
 > *Aclaración*: Para ejecutar la API, se utilizó como IDE IntelliJ IDEA, los pasos que se nombraran a continuación pueden variar dependiendo su IDE.
 
-Una vez abierto el proyecto y construido mediante Maven, siga el siguiente recorrido  en búsqueda del archivo *"Main.kt"*
+Una vez abierto el proyecto, espere a que el IDE termine de construir el mismo. En la parte inferior derecha aparecera un cartel para cargar el proyecto mediante ***Maven***, simplemente haga click en **Load** y espere a que termine de cargar todas las dependecias. Una vez terminada la operacion, siga el siguiente recorrido  en búsqueda del archivo *"Main.kt"*
 ```js
     API -> src -> main -> kotlin -> org
 ```
